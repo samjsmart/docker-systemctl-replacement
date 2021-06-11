@@ -2785,7 +2785,7 @@ class Systemctl:
         returncode = 0
         service_result = "success"
         if True:
-            if runs in [ "simple", "forking", "notify", "idle" ]:
+            if runs in [ "simple", "forking", "notify", "idle", "exec" ]:
                 env["MAINPID"] = strE(self.read_mainpid_from(conf))
             for cmd in conf.getlist("Service", "ExecStartPre", []):
                 exe, newcmd = self.exec_newcmd(cmd, env, conf)
@@ -2828,7 +2828,7 @@ class Systemctl:
                 self.set_status_from(conf, "ExecMainCode", strE(returncode))
                 active = returncode and "failed" or "active"
                 self.write_status_from(conf, AS=active)
-        elif runs in [ "simple", "idle" ]:
+        elif runs in [ "simple", "idle", "exec" ]:
             status_file = self.get_status_file_from(conf)
             pid = self.read_mainpid_from(conf)
             if self.is_active_pid(pid):
