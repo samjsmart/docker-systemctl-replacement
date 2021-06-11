@@ -12,6 +12,7 @@ parser.add_argument('--no-pager', default=False, action='store_true', help='Do n
 parser.add_argument('--system', default=False, action='store_true', help='Show system units')
 parser.add_argument('--user', default=False, action='store_true', help='Show user units')
 parser.add_argument('--root', metavar='path', type=str, help='Use subdirectory path')
+parser.add_argument('--since', metavar='since', type=str, help='Unused, included for compatibility')
 parser.add_argument('-x', default=False, action='store_true', help='Switch on verbose mode')
 args = parser.parse_args()
 
