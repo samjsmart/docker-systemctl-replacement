@@ -2530,6 +2530,8 @@ class Systemctl:
         return self.log_unit_from(conf, lines, follow)
     def log_unit_from(self, conf, lines = None, follow = False):
         log_path = self.get_journal_log_from(conf)
+        if os.path.exists(log_path) != True:
+            return os.spawnvp(os.P_WAIT, "echo", ["-- No entries --"])
         if follow:
             cmd = [ TAIL_CMD, "-n", str(lines or 10), "-F", log_path ]
             logg.debug("journalctl %s -> %s", conf.name(), cmd)
